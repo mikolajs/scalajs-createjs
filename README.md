@@ -3,13 +3,16 @@ scalajs-createjs
 
 Static types for the [CreateJS](http://createjs.com/) API for [Scala.js](http://www.scala-js.org/) programs.
 
+scala 2.12
+sbt 0.13.13
+scalajs-dom 0.9.1
 Usage
 -----
-
+Clone
+Run in sbt: package, publishLocal
 Add the following to your sbt build definition:
-
+WORK ONLY WITH LOCAL REPO
 ```scala
-resolvers += "amateras-repo" at "http://amateras.sourceforge.jp/mvn/"
 
 libraryDependencies += "com.scalawarrior" %%% "scalajs-createjs" % "0.0.2"
 ```
@@ -23,33 +26,23 @@ then enjoy CreateJS in Scala.js!
 
 ```scala
 // Declare the stage
-val stage = new Stage("demoCanvas")
-val w = stage.canvas.width
-val h = stage.canvas.height
+val canvas = dom.document.createElement("canvas").asInstanceOf[Canvas]
+val w = 850
+val h = 550
+canvas.width = w
+canvas.height = h
+dom.document.body.appendChild(canvas)
+val stage = new Stage(canvas)
 
-// Define images
-val manifest = js.Array(
-  js.Dictionary("src" -> "background.png", "id" -> "background"),
-  js.Dictionary("src" -> "knight.png", "id" -> "knight")
-)
 
-// Pre-load images
-val loader = new LoadQueue(false)
-loader.addEventListener("complete", (e: Object) => {
-  // Assemble shapes on the stage
-  val background = new Shape()
-  background.graphics.beginBitmapFill(loader.getResult("background")).drawRect(0, 0, w, h)
+var back = new Shape();
+back.graphics.beginFill("#6f6")
+back.graphics.drawRect(0, 0, w, h)
+stage.addChild(back)
 
-  var spriteSheet = new SpriteSheet(js.Dictionary(
-    "framerate" -> 30,
-    "images"    -> js.Array(loader.getResult("knight")),
-    "frames"    -> js.Dictionary("regX" -> -70, "height" -> 88, "count" -> 64, "regY" -> -60, "width" -> 74)
-  ))
-  val knight = new Sprite(spriteSheet);
-
-  stage.addChild(background, knight);
-  stage.update();
-  true
-}
-loader.loadManifest(manifest)
+val village = new Bitmap("src/home.png")
+village.x = 100
+village.y = 50
+stage.addChild(village)
+stage.update()
 ```
