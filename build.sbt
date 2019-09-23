@@ -5,15 +5,15 @@ name := "Scala.js CreateJS"
 
 normalizedName := "scalajs-createjs"
 
-version := "0.0.2"
+version := "0.0.3"
 
 organization := "com.scalawarrior"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.8"
 
 
 libraryDependencies +=
-  "org.scala-js" %%% "scalajs-dom" % "0.9.1"
+  "org.scala-js" %%% "scalajs-dom" % "0.9.7"
 
 
 scalacOptions ++= Seq(

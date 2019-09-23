@@ -4,8 +4,10 @@ scalajs-createjs
 Static types for the [CreateJS](http://createjs.com/) API for [Scala.js](http://www.scala-js.org/) programs.
 
 scala 2.12
-sbt 0.13.13
-scalajs-dom 0.9.1
+sbt 1.2.8
+scalajs-dom 0.9.7
+
+for CreateJS 1.0
 Usage
 -----
 Clone
@@ -14,7 +16,7 @@ Add the following to your sbt build definition:
 WORK ONLY WITH LOCAL REPO
 ```scala
 
-libraryDependencies += "com.scalawarrior" %%% "scalajs-createjs" % "0.0.2"
+libraryDependencies += "com.scalawarrior" %%% "scalajs-createjs" % "0.0.3"
 ```
 and add following import statement to the head of your Scala.js program:
 
@@ -43,6 +45,6 @@ stage.addChild(back)
 val village = new Bitmap("src/home.png")
 village.x = 100
 village.y = 50
-stage.addChild(village)
+stage.addChild(villag)
 stage.update()
 ```
